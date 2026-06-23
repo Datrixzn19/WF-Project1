@@ -52,7 +52,7 @@ namespace WF_Project1
                 if (string.IsNullOrWhiteSpace(nombre))
                 {
                     MessageBox.Show("Por favor, ingresa tu nombre.", "Dato faltante", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; //return para cortar el flujo 
+                    return; //return para cortar el flujo.
                 }
 
 
@@ -66,12 +66,21 @@ namespace WF_Project1
 
 
                 //logica de resultado
-                //ya tenemos la edad validada 
                 int anioActual = DateTime.Now.Year; //obtenemos el año actual
-                int edad = anioActual - anioNacimiento; //calculamos la edad restando el año actual con el año de nacimiento
+
+                if (anioNacimiento >= anioActual)
+                {
+                    MessageBox.Show("El año de nacimiento no puede ser mayor al año actual", "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else 
+                {
+                    //ya tenemos la edad validada 
+                    int edad = anioActual - anioNacimiento; //calculamos la edad 
+                    lblResultado.Text = $"{edad} años."; //mostramos el resultado en la etiqueta lblResultado
+                }
 
 
-                lblResultado.Text = $"{edad} años."; //mostramos el resultado en la etiqueta lblResultado
+                    
             }
             catch (FormatException)
             {
